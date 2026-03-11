@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karado Dental Clinic</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:#1e1e2f;overflow-x:hidden;background:#fff}
+.lucide{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:1000;padding:0 5%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:all .4s}
+nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);box-shadow:0 1px 30px rgba(0,0,0,.06)}
+.logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#1a5276;text-decoration:none}
+.logo span{color:#c0965c}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{text-decoration:none;color:#666;font-size:13.5px;font-weight:500;letter-spacing:.3px;transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:#c0965c;transition:width .3s}
+.nav-links a:hover{color:#1a5276}
+.nav-links a:hover::after{width:100%}
+.nav-cta{background:#1a5276;color:#fff;padding:11px 28px;border-radius:50px;text-decoration:none;font-size:13px;font-weight:600;transition:all .3s;border:2px solid #1a5276}
+.nav-cta:hover{background:transparent;color:#1a5276}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:0 5%;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#f8fbfd 0%,#eef5fa 40%,#faf8f4 100%)}
+.hero-circle{position:absolute;width:650px;height:650px;border-radius:50%;right:-5%;top:10%;background:radial-gradient(circle,rgba(26,82,118,.04) 0%,transparent 70%);animation:float 8s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+.hero-flex{display:flex;align-items:center;gap:80px;max-width:1200px;margin:0 auto;width:100%;z-index:2;position:relative;padding:140px 0 100px}
+.hero-content{flex:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(26,82,118,.06);border:1px solid rgba(26,82,118,.1);padding:10px 20px;border-radius:50px;font-size:12px;color:#1a5276;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:28px;animation:fadeUp .8s ease}
+.hero-badge .pulse{width:8px;height:8px;background:#c0965c;border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero h1{font-family:'Playfair Display',serif;font-size:58px;line-height:1.12;color:#1a1a2e;margin-bottom:24px;animation:fadeUp .8s ease .1s both}
+.hero h1 span{color:#c0965c;font-style:italic}
+.hero-desc{font-size:17px;color:#777;line-height:1.8;margin-bottom:36px;max-width:480px;animation:fadeUp .8s ease .2s both}
+.hero-btns{display:flex;gap:16px;animation:fadeUp .8s ease .3s both}
+.btn-primary{background:#1a5276;color:#fff;padding:16px 36px;border-radius:50px;text-decoration:none;font-size:14.5px;font-weight:600;transition:all .4s;box-shadow:0 4px 25px rgba(26,82,118,.25);display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:#154360;transform:translateY(-3px);box-shadow:0 8px 35px rgba(26,82,118,.35)}
+.btn-primary .lucide{width:18px;height:18px}
+.btn-secondary{background:transparent;color:#1a5276;padding:16px 36px;border-radius:50px;text-decoration:none;font-size:14.5px;font-weight:500;border:1.5px solid rgba(26,82,118,.25);transition:all .3s}
+.btn-secondary:hover{border-color:#1a5276;background:rgba(26,82,118,.04)}
+.hero-visual{flex:0 0 480px;position:relative;animation:fadeUp 1s ease .4s both}
+.hero-img-box{width:480px;height:520px;border-radius:30px;background:linear-gradient(135deg,#1a5276 0%,#2980b9 50%,#1a5276 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 40px 80px rgba(26,82,118,.2)}
+.hero-img-box svg.hero-tooth{width:200px;height:200px;color:rgba(255,255,255,.9);animation:float 4s ease-in-out infinite}
+.hero-float-card{position:absolute;background:white;border-radius:16px;padding:16px 20px;box-shadow:0 10px 40px rgba(0,0,0,.08);display:flex;align-items:center;gap:12px;animation:float 5s ease-in-out infinite}
+.hero-float-card.card1{bottom:40px;left:-40px}
+.hero-float-card.card2{top:40px;right:-30px;animation-delay:1.5s}
+.float-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#1a5276}
+.float-icon.blue{background:rgba(26,82,118,.08)}
+.float-icon.gold{background:rgba(192,150,92,.1);color:#c0965c}
+.float-icon .lucide{width:22px;height:22px}
+.float-text .ft-num{font-size:18px;font-weight:700;color:#1a1a2e}
+.float-text .ft-label{font-size:11px;color:#999}
+
+/* TRUST BAR */
+.trust{background:#fff;padding:48px 5%;border-top:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0}
+.trust-inner{display:flex;justify-content:center;align-items:center;gap:60px;max-width:1100px;margin:0 auto;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:12px}
+.trust-item .ti-icon{width:40px;height:40px;border-radius:10px;background:rgba(26,82,118,.05);display:flex;align-items:center;justify-content:center;color:#1a5276}
+.trust-item .ti-icon .lucide{width:20px;height:20px}
+.trust-item .ti-text{font-size:13px;color:#999;font-weight:500}
+.trust-item .ti-text strong{color:#1a5276;display:block;font-size:14px}
+
+/* STATS */
+.stats{padding:80px 5%;background:#fafbfc}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;max-width:1000px;margin:0 auto}
+.stat-card{text-align:center;padding:40px 20px;background:#fff;border-radius:20px;border:1px solid #f0f0f0;transition:all .4s}
+.stat-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.05);border-color:rgba(192,150,92,.2)}
+.stat-num{font-family:'Playfair Display',serif;font-size:46px;font-weight:700;color:#1a5276;margin-bottom:4px}
+.stat-label{font-size:13px;color:#999;font-weight:500}
+
+/* SERVICES */
+.services{padding:100px 5%}
+.section-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(192,150,92,.08);color:#c0965c;padding:8px 20px;border-radius:50px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header h2{font-family:'Playfair Display',serif;font-size:44px;color:#1a1a2e;margin-bottom:14px;line-height:1.2}
+.section-header p{font-size:17px;color:#999;max-width:500px;margin:0 auto;line-height:1.7}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.svc-card{background:#fff;border-radius:20px;padding:44px 32px;border:1px solid #f0f0f0;transition:all .5s;position:relative;overflow:hidden}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1a5276,#c0965c);transform:scaleX(0);transition:transform .4s;transform-origin:left}
+.svc-card:hover{transform:translateY(-8px);box-shadow:0 25px 60px rgba(0,0,0,.06)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-icon{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;background:rgba(26,82,118,.05);color:#1a5276}
+.svc-icon .lucide{width:28px;height:28px}
+.svc-card h3{font-family:'Playfair Display',serif;font-size:21px;color:#1a1a2e;margin-bottom:12px}
+.svc-card p{font-size:14px;color:#888;line-height:1.75}
+.svc-link{display:inline-flex;align-items:center;gap:6px;color:#1a5276;font-size:13px;font-weight:600;margin-top:16px;text-decoration:none;transition:gap .3s}
+.svc-link:hover{gap:10px}
+.svc-link .lucide{width:14px;height:14px}
+
+/* ABOUT */
+.about{padding:100px 5%;background:#fafbfc}
+.about-flex{display:flex;gap:80px;align-items:center;max-width:1100px;margin:0 auto}
+.about-visual{flex:0 0 480px;position:relative}
+.about-main-img{width:100%;height:450px;border-radius:24px;background:linear-gradient(135deg,#e8f4f8,#d4eaf4);display:flex;align-items:center;justify-content:center;box-shadow:0 30px 70px rgba(0,0,0,.07);color:#1a5276}
+.about-main-img .lucide{width:140px;height:140px;stroke-width:1}
+.about-accent{position:absolute;bottom:-20px;right:-20px;width:180px;height:180px;border-radius:20px;background:#1a5276;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;box-shadow:0 15px 40px rgba(26,82,118,.3)}
+.about-accent .aa-num{font-size:42px;font-weight:700;text-align:center;line-height:1.2}
+.about-accent .aa-num span{display:block;font-size:12px;font-family:'Inter',sans-serif;font-weight:500;color:rgba(255,255,255,.6)}
+.about-text{flex:1}
+.about-text h2{font-family:'Playfair Display',serif;font-size:40px;color:#1a1a2e;margin-bottom:20px;line-height:1.2}
+.about-text>p{font-size:16px;color:#777;line-height:1.8;margin-bottom:24px}
+.about-list{list-style:none}
+.about-list li{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.about-list li:last-child{border:none}
+.al-icon{width:40px;height:40px;border-radius:10px;background:rgba(192,150,92,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#c0965c}
+.al-icon .lucide{width:18px;height:18px}
+.al-text h4{font-size:15px;color:#1a1a2e;font-weight:600;margin-bottom:2px}
+.al-text p{font-size:13px;color:#999;line-height:1.5}
+
+/* PROCESS */
+.process{padding:100px 5%}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1100px;margin:0 auto;position:relative}
+.process-grid::before{content:'';position:absolute;top:50px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,#1a5276,#c0965c);opacity:.15}
+.proc-step{text-align:center;position:relative;z-index:2}
+.proc-num{width:64px;height:64px;border-radius:50%;background:#fff;border:2px solid #1a5276;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#1a5276;margin:0 auto 20px;transition:all .4s}
+.proc-step:hover .proc-num{background:#1a5276;color:#fff;transform:scale(1.1)}
+.proc-step h4{font-family:'Playfair Display',serif;font-size:18px;color:#1a1a2e;margin-bottom:8px}
+.proc-step p{font-size:13px;color:#999;line-height:1.6;max-width:200px;margin:0 auto}
+
+/* TESTIMONIALS */
+.testimonials{padding:100px 5%;background:linear-gradient(135deg,#1a5276 0%,#1a3c5e 100%);color:#fff}
+.testimonials .section-tag{background:rgba(255,255,255,.1);color:#c0965c}
+.testimonials .section-header h2{color:#fff}
+.testimonials .section-header p{color:rgba(255,255,255,.5)}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto}
+.test-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:36px;backdrop-filter:blur(10px);transition:all .4s}
+.test-card:hover{background:rgba(255,255,255,.1);transform:translateY(-4px)}
+.test-stars{color:#c0965c;font-size:15px;margin-bottom:16px;letter-spacing:2px;display:flex;gap:4px}
+.test-stars .lucide{width:16px;height:16px;fill:#c0965c;color:#c0965c}
+.test-card blockquote{font-size:15px;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:24px;font-style:italic}
+.test-author{display:flex;align-items:center;gap:12px}
+.test-avatar{width:44px;height:44px;border-radius:50%;background:rgba(192,150,92,.2);display:flex;align-items:center;justify-content:center;color:#c0965c}
+.test-avatar .lucide{width:22px;height:22px}
+.test-info .ti-name{font-size:14px;font-weight:600;color:#fff}
+.test-info .ti-since{font-size:11px;color:rgba(255,255,255,.4)}
+
+/* FAQ */
+.faq{padding:100px 5%;background:#fafbfc}
+.faq-grid{max-width:700px;margin:0 auto}
+.faq-item{background:#fff;border-radius:16px;margin-bottom:12px;border:1px solid #f0f0f0;overflow:hidden;transition:all .3s}
+.faq-item:hover{border-color:rgba(26,82,118,.15)}
+.faq-q{padding:22px 28px;font-size:15px;font-weight:600;color:#1a1a2e;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-q .lucide{width:20px;height:20px;color:#c0965c;transition:transform .3s;flex-shrink:0}
+.faq-item.open .faq-q .lucide{transform:rotate(45deg)}
+.faq-a{padding:0 28px;max-height:0;overflow:hidden;transition:all .4s;font-size:14px;color:#888;line-height:1.75}
+.faq-item.open .faq-a{max-height:200px;padding:0 28px 22px}
+
+/* CTA */
+.cta-section{padding:100px 5%;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#faf8f4 0%,#eef5fa 100%)}
+.cta-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
+.cta-inner h2{font-family:'Playfair Display',serif;font-size:46px;color:#1a1a2e;margin-bottom:16px;line-height:1.2}
+.cta-inner h2 span{color:#c0965c;font-style:italic}
+.cta-inner p{font-size:17px;color:#999;margin-bottom:36px;line-height:1.7}
+.cta-inner .btn-primary{padding:18px 48px;font-size:16px}
+.cta-phone{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;font-size:14px;color:#777}
+.cta-phone a{color:#1a5276;font-weight:600;text-decoration:none}
+
+/* MAP */
+.map-section{padding:80px 5%;background:#fff}
+.map-flex{display:flex;gap:40px;max-width:1100px;margin:0 auto;align-items:stretch}
+.map-info{flex:1;display:flex;flex-direction:column;justify-content:center}
+.map-info h3{font-family:'Playfair Display',serif;font-size:28px;color:#1a1a2e;margin-bottom:24px}
+.mi-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid #f0f0f0}
+.mi-item:last-child{border:none}
+.mi-icon{width:42px;height:42px;border-radius:12px;background:rgba(26,82,118,.05);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#1a5276}
+.mi-icon .lucide{width:20px;height:20px}
+.mi-text h4{font-size:14px;font-weight:600;color:#1a1a2e;margin-bottom:2px}
+.mi-text p{font-size:13px;color:#999}
+.map-embed{flex:1;min-height:350px;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.06)}
+.map-embed iframe{width:100%;height:100%;border:0}
+
+/* FOOTER */
+footer{background:#0d1b2a;color:rgba(255,255,255,.4);padding:70px 5% 30px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1100px;margin:0 auto 50px}
+.footer-col .fc-logo{font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin-bottom:14px}
+.footer-col .fc-logo span{color:#c0965c}
+.footer-col p{font-size:13px;line-height:1.8}
+.footer-col h4{color:#fff;font-size:14px;font-weight:600;margin-bottom:16px;letter-spacing:.5px}
+.footer-col a{display:block;color:rgba(255,255,255,.4);text-decoration:none;font-size:13px;line-height:2.2;transition:color .3s}
+.footer-col a:hover{color:#c0965c}
+.footer-bottom{text-align:center;padding-top:30px;border-top:1px solid rgba(255,255,255,.06);font-size:12px}
+
+.demo-banner{position:fixed;bottom:0;left:0;right:0;z-index:2000;background:linear-gradient(135deg,#c0965c,#a07840);color:#fff;padding:12px 5%;text-align:center;font-size:13px;box-shadow:0 -4px 20px rgba(0,0,0,.15)}
+.demo-banner strong{font-weight:700}
+
+@media(max-width:1024px){
+.hero-flex{flex-direction:column;text-align:center;gap:50px;padding:120px 0 80px}
+.hero-desc{margin-left:auto;margin-right:auto}
+.hero-btns{justify-content:center}
+.hero-visual{flex:0 0 auto}
+.hero-img-box{width:350px;height:380px;margin:0 auto}
+.hero-float-card{display:none}
+.about-flex{flex-direction:column;gap:50px}
+.about-visual{flex:0 0 auto;width:100%}
+.map-flex{flex-direction:column}
+}
+@media(max-width:768px){
+.nav-links{display:none}
+.hero h1{font-size:38px}
+.hero-img-box{width:280px;height:300px}
+.stats-grid{grid-template-columns:1fr 1fr;gap:16px}
+.services-grid{grid-template-columns:1fr}
+.process-grid{grid-template-columns:1fr 1fr;gap:30px}
+.process-grid::before{display:none}
+.test-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr 1fr;gap:30px}
+.about-accent{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">Karado <span>Dental</span></a>
+  <ul class="nav-links">
+    <li><a href="#servicii">Servicii</a></li>
+    <li><a href="#despre">Despre Noi</a></li>
+    <li><a href="#proces">Cum Lucram</a></li>
+    <li><a href="#recenzii">Recenzii</a></li>
+    <li><a href="#faq">Intrebari</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Programeaza-te</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-flex">
+    <div class="hero-content">
+      <div class="hero-badge"><div class="pulse"></div> Constanta  —  Deschidem si Sambata</div>
+      <h1>Zambetul tau<br>merita ce e mai <span>bun</span></h1>
+      <p class="hero-desc">Tratamente moderne, echipamente digitale de ultima generatie, si o echipa care pune confortul tau pe primul loc. La Karado Dental, fiecare vizita e o experienta placuta.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary"><i data-lucide="calendar"></i> Programeaza Consultatie</a>
+        <a href="#servicii" class="btn-secondary">Exploreaza Serviciile</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-box">
+        <svg class="hero-tooth" viewBox="0 0 100 120" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M30 55 C30 30, 20 15, 35 8 C42 5, 50 5, 50 5 C50 5, 58 5, 65 8 C80 15, 70 30, 70 55"/>
+          <path d="M30 55 C28 70, 32 90, 38 110 C39 113, 42 113, 43 110 C46 100, 48 90, 50 85"/>
+          <path d="M70 55 C72 70, 68 90, 62 110 C61 113, 58 113, 57 110 C54 100, 52 90, 50 85"/>
+          <path d="M38 25 C42 22, 50 20, 50 20 C50 20, 58 22, 62 25" stroke="rgba(255,255,255,.3)"/>
+        </svg>
+      </div>
+      <div class="hero-float-card card1">
+        <div class="float-icon blue"><i data-lucide="star"></i></div>
+        <div class="float-text"><div class="ft-num">4.9/5</div><div class="ft-label">Rating Google</div></div>
+      </div>
+      <div class="hero-float-card card2">
+        <div class="float-icon gold"><i data-lucide="users"></i></div>
+        <div class="float-text"><div class="ft-num">5.000+</div><div class="ft-label">Pacienti Multumiti</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><div class="ti-icon"><i data-lucide="monitor"></i></div><div class="ti-text"><strong>Echipamente Premium</strong>Tehnologie digitala de ultima generatie</div></div>
+    <div class="trust-item"><div class="ti-icon"><i data-lucide="graduation-cap"></i></div><div class="ti-text"><strong>Medici Specializati</strong>Pregatire internationala continua</div></div>
+    <div class="trust-item"><div class="ti-icon"><i data-lucide="globe"></i></div><div class="ti-text"><strong>Pacienti Internationali</strong>Provider United Concordia / Tricare</div></div>
+    <div class="trust-item"><div class="ti-icon"><i data-lucide="clock"></i></div><div class="ti-text"><strong>Program Extins</strong>Luni - Sambata, pana la 21:00</div></div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-num">10+</div><div class="stat-label">Ani de Experienta</div></div>
+    <div class="stat-card"><div class="stat-num">5.000+</div><div class="stat-label">Pacienti Multumiti</div></div>
+    <div class="stat-card"><div class="stat-num">98%</div><div class="stat-label">Rata Succes Implanturi</div></div>
+    <div class="stat-card"><div class="stat-num">15+</div><div class="stat-label">Tipuri de Tratamente</div></div>
+  </div>
+</section>
+
+<section class="services" id="servicii">
+  <div class="section-header">
+    <div class="section-tag">Servicii</div>
+    <h2>Tratamente Complete</h2>
+    <p>Tot ce ai nevoie pentru un zambet sanatos si frumos, sub acelasi acoperis.</p>
+  </div>
+  <div class="services-grid">
+    <div class="svc-card"><div class="svc-icon"><i data-lucide="scan-search"></i></div><h3>Stomatologie Generala</h3><p>Consultatii detaliate, detartraj profesional, plombe estetice compozite, tratamente de canal cu microscop. Preventie si interventie la standarde europene.</p><a href="#contact" class="svc-link">Afla mai mult <i data-lucide="arrow-right"></i></a></div>
+    <div class="svc-card"><div class="svc-icon"><i data-lucide="sparkles"></i></div><h3>Estetica Dentara</h3><p>Fatete ceramice E-max, albire profesionala in cabinet si la domiciliu, bonding cosmetic, conturare gingivala. Zambetul din reviste, accesibil si tie.</p><a href="#contact" class="svc-link">Afla mai mult <i data-lucide="arrow-right"></i></a></div>
+    <div class="svc-card"><div class="svc-icon"><i data-lucide="drill"></i></div><h3>Implantologie</h3><p>Implanturi premium cu ghidaj digital 3D. Planificare virtuala, insertie precisa, protezare imediata. Rata de succes peste 98%.</p><a href="#contact" class="svc-link">Afla mai mult <i data-lucide="arrow-right"></i></a></div>
+    <div class="svc-card"><div class="svc-icon"><i data-lucide="smile"></i></div><h3>Ortodontie</h3><p>Aparate metalice, ceramice si aliniere transparenta (clear aligners). Plan de tratament digital cu simulare 3D a rezultatului final.</p><a href="#contact" class="svc-link">Afla mai mult <i data-lucide="arrow-right"></i></a></div>
+    <div class="svc-card"><div class="svc-icon"><i data-lucide="crown"></i></div><h3>Proteze & Coroane</h3><p>Coroane integral ceramice, punti pe implanturi, proteze scheletate si acrilice. Restauram functionalitatea si estetica in mod natural.</p><a href="#contact" class="svc-link">Afla mai mult <i data-lucide="arrow-right"></i></a></div>
+    <div class="svc-card"><div class="svc-icon"><i data-lucide="heart-pulse"></i></div><h3>Chirurgie Orala</h3><p>Extractii inclusiv molar de minte inclus, augmentari osoase, sinus lift, chirurgie pre-protetica. Cu anestezie moderna, fara durere.</p><a href="#contact" class="svc-link">Afla mai mult <i data-lucide="arrow-right"></i></a></div>
+  </div>
+</section>
+
+<section class="about" id="despre">
+  <div class="about-flex">
+    <div class="about-visual">
+      <div class="about-main-img"><i data-lucide="hospital" style="width:140px;height:140px;stroke-width:1"></i></div>
+      <div class="about-accent"><div class="aa-num">10+<span>Ani Experienta</span></div></div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">Despre Noi</div>
+      <h2>De ce Karado Dental?</h2>
+      <p>Suntem o clinica moderna din inima Constantei, unde fiecare pacient e tratat ca parte din familie. Combinam tehnologia de ultima generatie cu caldura umana.</p>
+      <ul class="about-list">
+        <li><div class="al-icon"><i data-lucide="target"></i></div><div class="al-text"><h4>Tratament Personalizat</h4><p>Plan adaptat nevoilor tale specifice, nu un sablon universal.</p></div></li>
+        <li><div class="al-icon"><i data-lucide="microscope"></i></div><div class="al-text"><h4>Tehnologie Digitala</h4><p>Scanner intraoral, radiografie 3D, planificare virtuala.</p></div></li>
+        <li><div class="al-icon"><i data-lucide="globe"></i></div><div class="al-text"><h4>Pacienti Internationali</h4><p>Vorbim engleza. Provider Tricare pentru personalul militar.</p></div></li>
+        <li><div class="al-icon"><i data-lucide="heart"></i></div><div class="al-text"><h4>Atmosfera Relaxata</h4><p>Fara stres, fara graba. Fiecare vizita e confortabila.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="proces">
+  <div class="section-header">
+    <div class="section-tag">Procesul Nostru</div>
+    <h2>4 Pasi Simpli</h2>
+    <p>De la prima vizita la zambetul perfect.</p>
+  </div>
+  <div class="process-grid">
+    <div class="proc-step"><div class="proc-num">1</div><h4>Consultatie</h4><p>Evaluare completa, radiografie digitala si plan de tratament detaliat.</p></div>
+    <div class="proc-step"><div class="proc-num">2</div><h4>Plan & Buget</h4><p>Discutam optiunile, costurile si stabilim calendarul tratamentului.</p></div>
+    <div class="proc-step"><div class="proc-num">3</div><h4>Tratament</h4><p>Executam planul cu precizie, tehnologie si grija maxima.</p></div>
+    <div class="proc-step"><div class="proc-num">4</div><h4>Zambet Nou</h4><p>Rezultatul final: un zambet sanatos de care esti mandru.</p></div>
+  </div>
+</section>
+
+<section class="testimonials" id="recenzii">
+  <div class="section-header">
+    <div class="section-tag">Recenzii</div>
+    <h2>Ce Spun Pacientii Nostri</h2>
+    <p>Feedback real de la oameni reali.</p>
+  </div>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+      <blockquote>Cea mai buna experienta la dentist din viata mea. Profesionalism, caldura, si rezultate impecabile. Nu ma mai duc in alta parte.</blockquote>
+      <div class="test-author"><div class="test-avatar"><i data-lucide="user"></i></div><div class="test-info"><div class="ti-name">Maria P.</div><div class="ti-since">Pacienta din 2022</div></div></div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+      <blockquote>Am facut 4 implanturi si fatete ceramice. Rezultatul e spectaculos — arata si se simt ca dintii mei naturali. Recomand 100%.</blockquote>
+      <div class="test-author"><div class="test-avatar"><i data-lucide="user"></i></div><div class="test-info"><div class="ti-name">Andrei M.</div><div class="ti-since">Pacient din 2023</div></div></div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+      <blockquote>Copiii mei nu se mai tem de dentist de cand vin la Karado. Echipa e incredibil de blanda si rabdatoare. Asta spune totul.</blockquote>
+      <div class="test-author"><div class="test-avatar"><i data-lucide="user"></i></div><div class="test-info"><div class="ti-name">Elena D.</div><div class="ti-since">Pacienta din 2021</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="section-header">
+    <div class="section-tag">Intrebari Frecvente</div>
+    <h2>Ai Intrebari?</h2>
+    <p>Raspunsuri la cele mai comune intrebari ale pacientilor nostri.</p>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item open"><div class="faq-q">Cat costa o consultatie? <i data-lucide="plus"></i></div><div class="faq-a">Prima consultatie include evaluarea completa si radiografia digitala. Pretul exact il stabilim dupa evaluare, dar oferim transparenta totala a costurilor inainte de orice tratament.</div></div>
+    <div class="faq-item"><div class="faq-q">Lucrati cu asigurari de sanatate? <i data-lucide="plus"></i></div><div class="faq-a">Da, suntem provider oficial United Concordia / Tricare pentru personalul militar. De asemenea, lucram cu mai multe asigurari private din Romania.</div></div>
+    <div class="faq-item"><div class="faq-q">Cat dureaza un implant dentar? <i data-lucide="plus"></i></div><div class="faq-a">Procedura de insertie dureaza 30-60 minute. Vindecarea completa 3-6 luni, dar in multe cazuri oferim protezare imediata — pleci cu dinte in aceeasi zi.</div></div>
+    <div class="faq-item"><div class="faq-q">Oferiti tratamente in rate? <i data-lucide="plus"></i></div><div class="faq-a">Da, oferim posibilitatea de plata in rate pentru tratamentele mai complexe. Discutam optiunile de finantare la consultatie.</div></div>
+    <div class="faq-item"><div class="faq-q">Aveti program si sambata? <i data-lucide="plus"></i></div><div class="faq-a">Da! Programul nostru este Luni - Vineri 9:00 - 21:00 si Sambata 9:00 - 14:00.</div></div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Gata sa ai zambetul pe care il <span>meriti?</span></h2>
+    <p>Programeaza o consultatie si hai sa vedem impreuna ce putem face pentru tine. Raspundem in mai putin de o ora.</p>
+    <a href="tel:+40735500540" class="btn-primary"><i data-lucide="phone"></i> Suna Acum: 0735 500 540</a>
+    <div class="cta-phone">sau scrie-ne pe <a href="#">WhatsApp</a></div>
+  </div>
+</section>
+
+<section class="map-section" id="contact">
+  <div class="map-flex">
+    <div class="map-info">
+      <h3>Unde Ne Gasesti</h3>
+      <div class="mi-item"><div class="mi-icon"><i data-lucide="map-pin"></i></div><div class="mi-text"><h4>Adresa</h4><p>Bd. Ferdinand, Nr. 34, Constanta</p></div></div>
+      <div class="mi-item"><div class="mi-icon"><i data-lucide="phone"></i></div><div class="mi-text"><h4>Telefon</h4><p>0735 500 540</p></div></div>
+      <div class="mi-item"><div class="mi-icon"><i data-lucide="clock"></i></div><div class="mi-text"><h4>Program</h4><p>L-V: 9:00 - 21:00 | S: 9:00 - 14:00</p></div></div>
+      <div class="mi-item"><div class="mi-icon"><i data-lucide="car"></i></div><div class="mi-text"><h4>Parcare</h4><p>Parcare gratuita disponibila in zona</p></div></div>
+    </div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.5!2d28.6538!3d44.1765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDTCsDEwJzM1LjQiTiAyOMKwMzknMTMuNyJF!5e0!3m2!1sen!2sro!4v1" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col"><div class="fc-logo">Karado <span>Dental</span></div><p>Clinica stomatologica moderna din inima Constantei. Tratamente premium, medici dedicati, si grija autentica pentru fiecare pacient.</p></div>
+    <div class="footer-col"><h4>Servicii</h4><a href="#">Stomatologie Generala</a><a href="#">Implantologie</a><a href="#">Ortodontie</a><a href="#">Estetica Dentara</a></div>
+    <div class="footer-col"><h4>Clinica</h4><a href="#">Despre Noi</a><a href="#">Echipa</a><a href="#">Galerie</a><a href="#">Blog</a></div>
+    <div class="footer-col"><h4>Contact</h4><a href="tel:+40735500540">0735 500 540</a><a href="#">Bd. Ferdinand 34, Constanta</a><a href="#">L-V: 9-21 | S: 9-14</a></div>
+  </div>
+  <div class="footer-bottom">2026 Karado Dental Clinic. Toate drepturile rezervate.</div>
+</footer>
+
+<div class="demo-banner"><strong>Demo gratuit</strong> — designul final se personalizeaza 100% dupa preferintele dumneavoastra. Putem face orice modificare doriti.</div>
+
+<script>
+lucide.createIcons();
+window.addEventListener('scroll',function(){document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)});
+document.querySelectorAll('.faq-q').forEach(function(q){q.addEventListener('click',function(){var item=q.parentElement;document.querySelectorAll('.faq-item').forEach(function(i){if(i!==item)i.classList.remove('open')});item.classList.toggle('open')})});
+var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)'}})},{threshold:.1});
+document.querySelectorAll('.svc-card,.stat-card,.test-card,.proc-step,.faq-item').forEach(function(el){el.style.opacity='0';el.style.transform='translateY(30px)';el.style.transition='all .6s ease';obs.observe(el)});
+</script>
+</body>
+</html>
